@@ -7,6 +7,7 @@ use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Foundation\Application;
 use Orchestra\Testbench\TestCase as Orchestra;
 use Route;
+use Spatie\JsonApiPaginate\Test\Models\TestModel;
 
 abstract class TestCase extends Orchestra
 {
@@ -60,8 +61,22 @@ abstract class TestCase extends Orchestra
             $table->timestamps();
         });
 
+        $app['db']->connection()->getSchemaBuilder()->create('through_models', function (Blueprint $table) {
+            $table->increments('id');
+            $table->string('name');
+            $table->string('test_model_id');
+            $table->timestamps();
+        });
+
+        $app['db']->connection()->getSchemaBuilder()->create('target_models', function (Blueprint $table) {
+            $table->increments('id');
+            $table->string('name');
+            $table->string('through_model_id');
+            $table->timestamps();
+        });
+
         foreach (range(1, 40) as $index) {
-            TestModel::create(['name' => "user{$index}"]);
+            TestModel::create(['name' => "Test Model - {$index}"]);
         }
     }
 
