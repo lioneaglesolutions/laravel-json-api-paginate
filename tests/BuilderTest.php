@@ -2,6 +2,8 @@
 
 namespace Spatie\JsonApiPaginate\Test;
 
+use Spatie\JsonApiPaginate\Test\Models\TestModel;
+
 class BuilderTest extends TestCase
 {
     /** @test */

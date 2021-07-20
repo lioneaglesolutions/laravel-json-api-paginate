@@ -1,6 +1,6 @@
 <?php
 
-namespace Spatie\JsonApiPaginate\Test;
+namespace Spatie\JsonApiPaginate\Test\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
